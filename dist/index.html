@@ -1,48 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="page" lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Times Tables Visualisation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      outline: 0
+    }
+
+    .body {
+      width: 100%;
+      height: 100%;
+      background-color: #080d14;
+    }
+
+    .body__canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: #080d14;
+    }
+  </style>
 </head>
-<body>
-  <article class="film_review">
-    <header>
-      <h2>Jurassic Park</h2>
-    </header>
-    <section class="main_review">
-      <p>Dinos were great!</p>
-    </section>
-    <section class="user_reviews">
-      <article class="user_review">
-        <p>Way too scary for me.</p>
-        <footer>
-          <p>
-            Posted on
-            <time datetime="2015-05-16 19:00">May 16</time>
-            by Lisa.
-          </p>
-        </footer>
-      </article>
-      <article class="user_review">
-        <p>I agree, dinos are my favorite.</p>
-        <footer>
-          <p>
-            Posted on
-            <time datetime="2015-05-17 19:00">May 17</time>
-            by Tom.
-          </p>
-        </footer>
-      </article>
-    </section>
-    <footer>
-      <p>
-        Posted on
-        <time datetime="2015-05-15 19:00">May 15</time>
-        by Staff.
-      </p>
-    </footer>
-  </article>
+
+<body class="page__body body">
+  <p style="display:none;">
+    Hello! It's simple Times Tables Visualization on JavaScript.
+    You can find source code on my GitHub:
+    https://github.com/Dv-Andrew/Visualization__TimesTables
+  </p>
+  <canvas class="body__canvas canvas" tabindex="1"></canvas>
+  <script>
+    ! function (n) {
+  var e = {};
+
+  function r(t) {
+    if (e[t]) return e[t].exports;
+    var i = e[t] = {
+      i: t,
+      l: !1,
+      exports: {}
+    };
+    return n[t].call(i.exports, i, i.exports, r), i.l = !0, i.exports
+  }
+  r.m = n, r.c = e, r.d = function (t, i, n) {
+    r.o(t, i) || Object.defineProperty(t, i, {
+      enumerable: !0,
+      get: n
+    })
+  }, r.r = function (t) {
+    "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, {
+      value: "Module"
+    }), Object.defineProperty(t, "__esModule", {
+      value: !0
+    })
+  }, r.t = function (i, t) {
+    if (1 & t && (i = r(i)), 8 & t) return i;
+    if (4 & t && "object" == typeof i && i && i.__esModule) return i;
+    var n = Object.create(null);
+    if (r.r(n), Object.defineProperty(n, "default", {
+        enumerable: !0,
+        value: i
+      }), 2 & t && "string" != typeof i)
+      for (var e in i) r.d(n, e, function (t) {
+        return i[t]
+      }.bind(null, e));
+    return n
+  }, r.n = function (t) {
+    var i = t && t.__esModule ? function () {
+      return t.default
+    } : function () {
+      return t
+    };
+    return r.d(i, "a", i), i
+  }, r.o = function (t, i) {
+    return Object.prototype.hasOwnProperty.call(t, i)
+  }, r.p = "", r(r.s = 0)
+}([function (t, i, n) {
+  "use strict";
+
+  function s(t, i, n, e, r) {
+    return (t - i) / (n - i) * (r - e) + e
+  }
+  n.r(i);
+  var o = function () {
+    function _(t, i, n) {
+      t instanceof _ ? (this._x = t._x || 0, this._y = t._y || 0, this._z = t._z || 0) : t instanceof Array ? t[0] instanceof Array ? (t[0] ? this._x = t[0][0] : this._x = 0, t[1] ? this._y = t[1][0] : this._y = 0, t[2] ? this._z = t[2][0] : this._z = 0) : (this._x = t[0] || 0, this._y = t[1] || 0, this._z = t[2] || 0) : "number" == typeof t && (this._x = t || 0, this._y = i || 0, this._z = n || 0)
+    }
+    return _.prototype.getX = function () {
+      return this._x
+    }, _.prototype.getY = function () {
+      return this._y
+    }, _.prototype.getZ = function () {
+      return this._z
+    }, _.prototype.set = function (t, i, n) {
+      return t instanceof _ ? (this._x = t._x || 0, this._y = t._y || 0, this._z = t._z || 0, this) : t instanceof Array ? (t[0] instanceof Array ? (t[0] ? this._x = t[0][0] : this._x = 0, t[1] ? this._y = t[1][0] : this._y = 0, t[2] ? this._z = t[2][0] : this._z = 0) : (this._x = t[0] || 0, this._y = t[1] || 0, this._z = t[2] || 0), this) : "number" == typeof t ? (this._x = t || 0, this._y = i || 0, this._z = n || 0, this) : void 0
+    }, _.prototype.copy = function () {
+      return new _(this._x, this._y, this._z)
+    }, _.prototype.add = function (t, i, n) {
+      return t instanceof _ ? (this._x += t._x || 0, this._y += t._y || 0, this._z += t._z || 0, this) : t instanceof Array ? (t[0] instanceof Array ? (t[0] ? this._x += t[0][0] : this._x += 0, t[1] ? this._y += t[1][0] : this._y += 0, t[2] ? this._z += t[2][0] : this._z += 0) : (this._x += t[0] || 0, this._y += t[1] || 0, this._z += t[2] || 0), this) : "number" == typeof t ? (this._x += t || 0, this._y += i || 0, this._z += n || 0, this) : void 0
+    }, _.prototype.sub = function (t, i, n) {
+      return t instanceof _ ? (this._x -= t._x || 0, this._y -= t._y || 0, this._z -= t._z || 0, this) : t instanceof Array ? (t[0] instanceof Array ? (t[0] ? this._x -= t[0][0] : this._x -= 0, t[1] ? this._y -= t[1][0] : this._y -= 0, t[2] ? this._z -= t[2][0] : this._z -= 0) : (this._x -= t[0] || 0, this._y -= t[1] || 0, this._z -= t[2] || 0), this) : "number" == typeof t ? (this._x -= t || 0, this._y -= i || 0, this._z -= n || 0, this) : void 0
+    }, _.prototype.mult = function (t) {
+      return "number" == typeof t && isFinite(t) ? (this._x *= t, this._y *= t, this._z *= t) : console.warn("Vector.mult():\n\tn(" + t + ") is undefined or not a finite number."), this
+    }, _.prototype.div = function (t) {
+      return "number" == typeof t && isFinite(t) ? 0 === t ? console.warn("Vector.div():\n\tcan't divide by 0.") : (this._x /= t, this._y /= t, this._z /= t) : console.warn("Vector.div():\n\tn(" + t + ") is undefined or not a finite number."), this
+    }, _.prototype.mag = function () {
+      return Math.sqrt(this.magSq())
+    }, _.prototype.magSq = function () {
+      return Math.pow(this._x, 2) + Math.pow(this._y, 2) + Math.pow(this._z, 2)
+    }, _.prototype.dot = function (t, i, n) {
+      if (t instanceof _) return this.dot(t._x, t._y, t._z);
+      if (t instanceof Array) {
+        var e = void 0,
+          r = void 0,
+          s = 0;
+        return t[0] instanceof Array ? (t[0] && (e = t[0][0]), t[1] && (r = t[1][0]), t[2] && (s = t[2][0])) : (e = t[0] || 0, r = t[1] || 0, s = t[2] || 0), this.dot(e, r, s)
+      }
+      return "number" == typeof t ? this._x * (t || 0) + this._y * (i || 0) + this._z * (n || 0) : void 0
+    }, _.prototype.cross = function (t) {
+      return new _(this._y * t._z - this._z * t._y, this._z * t._x - this._x * t._z, this._x * t._y - this._y * t._x)
+    }, _.prototype.dist = function (t) {
+      return t.copy().sub(this).mag()
+    }, _.prototype.normalize = function () {
+      var t = this.mag();
+      return 0 !== t && this.mult(1 / t), this
+    }, _.prototype.limit = function (t) {
+      var i = this.magSq();
+      return i > Math.pow(t, 2) && this.div(Math.sqrt(i)).mult(t), this
+    }, _.prototype.setMag = function (t) {
+      return this.normalize().mult(t)
+    }, _.prototype.heading = function () {
+      return Math.atan2(this._y, this._x)
+    }, _.prototype.rotate = function (t) {
+      var i = this.heading() + t,
+        n = this.mag();
+      return this._x = Math.cos(i) * n, this._y = Math.sin(i) * n, this
+    }, _.prototype.angleBetween = function (t, i, n) {
+      if (t instanceof _) {
+        var e = this.dot(t) / (this.mag() * t.mag());
+        return Math.acos(Math.min(1, Math.max(-1, e)))
+      }
+      if (t instanceof Array) {
+        var r = void 0,
+          s = void 0,
+          o = 0;
+        return t[0] instanceof Array ? (t[0] && (r = t[0][0]), t[1] && (s = t[1][0]), t[2] && (o = t[2][0])) : (r = t[0] || 0, s = t[1] || 0, o = t[2] || 0), this.angleBetween(new _(r, s, o))
+      }
+      if ("number" == typeof t) return s = r = void 0, o = 0, r = t || 0, s = i || 0, o = n || 0, this.angleBetween(new _(r, s, o))
+    }, _.prototype.lerp = function (t, i, n, e) {
+      if (i instanceof _) return this.lerp(t, i._x, i._y, i._z);
+      if (i instanceof Array) {
+        var r = void 0,
+          s = void 0,
+          o = 0;
+        return i[0] instanceof Array ? (i[0] && (r = i[0][0]), i[1] && (s = i[1][0]), i[2] && (o = i[2][0])) : (r = i[0] || 0, s = i[1] || 0, o = i[2] || 0), this.lerp(t, r, s, o)
+      }
+      return "number" == typeof i ? ((t < 0 || 1 < t) && console.warn("Vector.lerp():\n\t'amt' must be value between 0.0 (old vector) and 1.0 (new vector)."), this._x += (i - this._x) * t || 0, this._y += (n - this._y) * t || 0, this._z += (e - this._z) * t || 0, this) : void 0
+    }, _.prototype.equals = function (t, i, n) {
+      if (t instanceof _) return this.equals(t._x, t._y, t._z);
+      if (t instanceof Array) {
+        var e = void 0,
+          r = void 0,
+          s = 0;
+        return t[0] instanceof Array ? (t[0] && (e = t[0][0]), t[1] && (r = t[1][0]), t[2] && (s = t[2][0])) : (e = t[0] || 0, r = t[1] || 0, s = t[2] || 0), this.equals(e, r, s)
+      }
+      var o, h, a;
+      return "number" == typeof t ? (o = t || 0, h = i || 0, a = n || 0, this._x === o && this._y === h && this._z === a) : void 0
+    }, _.prototype.toString = function () {
+      return "Vector: [" + this._x + ", " + this._y + ", " + this._z + "]"
+    }, _.prototype.toArray = function (t) {
+      return void 0 === t && (t = 1), 1 === t ? [this._x, this._y, this._z] : [
+        [this._x],
+        [this._y],
+        [this._z]
+      ]
+    }, _.fromAngle = function (t, i) {
+      return void 0 === i && (i = 1), new _(i * Math.cos(t), i * Math.sin(t), 0)
+    }, _.fromAngles = function (t, i, n) {
+      void 0 === n && (n = 1);
+      var e = Math.cos(i),
+        r = Math.sin(i),
+        s = Math.cos(t),
+        o = Math.sin(t);
+      return new _(n * o * r, -n * s, n * o * e)
+    }, _.add = function (t, i) {
+      return t.copy().add(i)
+    }, _.sub = function (t, i) {
+      return t.copy().sub(i)
+    }, _.mult = function (t, i) {
+      return t.copy().mult(i)
+    }, _.div = function (t, i) {
+      return t.copy().div(i)
+    }, _.dot = function (t, i) {
+      return t.dot(i)
+    }, _.cross = function (t, i) {
+      return t.cross(i)
+    }, _.dist = function (t, i) {
+      return t.dist(i)
+    }, _.lerp = function (t, i, n) {
+      return i.lerp(t, n)
+    }, _.mag = function (t) {
+      return t.mag()
+    }, _
+  }();
+  new(function () {
+    function t(t) {
+      this._canvas = document.querySelector(t), this._context = this._canvas.getContext("2d"), this._canvas.width = window.innerWidth, this._canvas.height = window.innerHeight, this._canvas.focus(), this.setup(), window.requestAnimationFrame(this.frame.bind(this))
+    }
+    return t.prototype.frame = function (t) {
+      this._previousTime || (this._previousTime = t);
+      var i = t - this._previousTime;
+      this._previousTime = t, this._fps = 1e3 / i, this.update(i / 1e3), this.draw(), window.requestAnimationFrame(this.frame.bind(this))
+    }, t.prototype.setup = function () {
+      this._totalPoints = 200, this._factor = .005, this._factorFlag = !0, this._canvas.width > this._canvas.height ? this._radius = this._canvas.height / 2.2 : this._radius = this._canvas.width / 2.2
+    }, t.prototype.draw = function () {
+      var t = this._context;
+      t.clearRect(0, 0, this._canvas.width, this._canvas.height), t.fillStyle = "#FFFFFF", t.strokeStyle = "#FFFFFF", t.lineWidth = .5, t.save(), t.translate(this._canvas.width / 2, this._canvas.height / 2), t.beginPath(), t.arc(0, 0, this._radius, 0, 2 * Math.PI), t.closePath(), t.stroke();
+      for (var i = 0; i < this._totalPoints; i++) {
+        var n = new o(this.getVector(i));
+        t.beginPath(), t.arc(n.getX(), n.getY(), 1, 0, 2 * Math.PI), t.closePath(), t.fill()
+      }
+      for (i = 0; i < this._totalPoints; i++) {
+        var e = new o(this.getVector(i)),
+          r = new o(this.getVector(i * this._factor));
+        t.strokeStyle = "hsl(" + s(i, 0, this._totalPoints, 0, 360) + ", 100%, 50%)", t.beginPath(), t.moveTo(e.getX(), e.getY()), t.lineTo(r.getX(), r.getY()), t.closePath(), t.stroke()
+      }
+      t.restore()
+    }, t.prototype.update = function (t) {
+      this._factorFlag ? (this._factor += .005, 100 <= this._factor && (this._factorFlag = !this._factorFlag)) : (this._factor -= .005, this._factor <= 0 && (this._factorFlag = !this._factorFlag)), console.log(this._factor)
+    }, t.prototype.getVector = function (t) {
+      var i = s(t % this._totalPoints, 0, this._totalPoints, 0, 2 * Math.PI),
+        n = o.fromAngle(i + Math.PI);
+      return n.mult(this._radius), n
+    }, t
+  }())(".canvas")
+}]);
+  </script>
 </body>
+
 </html>
