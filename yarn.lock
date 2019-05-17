@@ -2567,6 +2567,11 @@ netlify-lambda@^1.4.9:
     webpack "^4.17.1"
     webpack-merge "^4.1.4"
 
+node-fetch@^2.6.0:
+  version "2.6.0"
+  resolved "http://npm.ymmoa.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  integrity sha1-5jNFY4bUqlWGP2dqerDaqP3ssP0=
+
 node-libs-browser@^2.0.0:
   version "2.2.0"
   resolved "http://npm.ymmoa.com/node-libs-browser/-/node-libs-browser-2.2.0.tgz#c72f60d9d46de08a940dedbb25f3ffa2f9bbaa77"

@@ -1,5 +1,10 @@
 {
+  "scripts": {
+    "build": "netlify-lambda build src/lambda",
+    "serve": "netlify-lambda serve src/lambda"
+  },
   "dependencies": {
-    "netlify-lambda": "^1.4.9"
+    "netlify-lambda": "^1.4.9",
+    "node-fetch": "^2.6.0"
   }
 }
