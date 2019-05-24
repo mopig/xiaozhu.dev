@@ -1,5 +1,5 @@
 ---
-title: Someone just pushed {{ date | date('dddd, MMMM Do') }}
+title: Someone just pushed
 assignees: JasonEtco, matchai
 labels: bug, enhancement
 ---
