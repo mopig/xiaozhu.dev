@@ -6,6 +6,6 @@
   "dependencies": {
     "encoding": "^0.1.12",
     "netlify-lambda": "^1.4.9",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }
